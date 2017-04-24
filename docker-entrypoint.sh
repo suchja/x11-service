@@ -10,6 +10,9 @@ if [ -z "$XFB_SCREEN" ]; then
 	XFB_SCREEN=1024x768x24
 fi
 
+# cleanup previous executions
+rm -fr ~/xvfb.log /tmp/.X11-unix/ /tmp/.X0-lock .Xauthority
+
 # first we need our security cookie and add it to user's .Xauthority
 mcookie | sed -e 's/^/add :0 MIT-MAGIC-COOKIE-1 /' | xauth -q
 
