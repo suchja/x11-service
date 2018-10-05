@@ -22,10 +22,10 @@ xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f /Xauthority/xserver.xauth nme
 
 # now boot X-Server, tell it to our cookie and give it sometime to start up
 Xvfb :0 -auth ~/.Xauthority -screen 0 $XFB_SCREEN >>~/xvfb.log 2>&1 &
-sleep 10
+sleep 2
 
 # allow any application in the network to connect to this X Server
-xhost +
+(sleep 8 && xhost +) &
 
 # finally we can run the VNC-Server based on our just started X-Server
 x11vnc -forever -passwd $VNC_PASSWORD -display :0
