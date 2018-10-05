@@ -7,13 +7,13 @@ A base image for creating a container with an application using this X11 server 
 
 My intention for this image was to have a clear separation of concerns. This image is responsible for all the X-Server stuff. Another image can fully concentrate on the application and is simply linked to a container of this image.
 
-More details can be found [here](https://github.com/suchja/x11server/blob/master/Story.md).
+More details can be found [here](https://github.com/bmustiata/x11server/blob/master/Story.md).
 
 ## Usage
 
 Running a container based on this image is quite easy. It is intended to be run as daemon. So you can run via:
 
-`docker run -d --name display -e VNC_PASSWORD=newPW -e XFB_SCREEN=1280x800x24 -p 5900:5900 suchja/x11server`
+`docker run -d --name display -e VNC_PASSWORD=newPW -e XFB_SCREEN=1280x800x24 -p 5900:5900 bmst/x11server`
 
 You should give it a name (here `display`), because a container running the client should be linked with this container. Forwarding the port `5900` allows you to access the VNC server from within your network.
 
@@ -35,7 +35,7 @@ You can use `docker-compose` to avoid typing or copy-and-pasting all the stuff a
 
 ```
 xserver:
-	image: suchja/x11server
+	image: bmst/x11server
 	ports:
 		- 5900:5900
 	environment:
@@ -48,7 +48,7 @@ Save this inside `docker-compose.yml`, add a proper password and call `docker-co
 ## Maintenance
 The image is build on Docker hub with [Automated builds](http://docs.docker.com/docker-hub/builds/). There is no dedicated maintenance schedule for this image. It is relying on packages from `debian:jessie` and thus I do not assume to update it frequently.
 
-In case you have any issues, you are invited to create a pull request or an issue on the related [github repository](https://github.com/suchja/x11server.git).
+In case you have any issues, you are invited to create a pull request or an issue on the related [github repository](https://github.com/bmustiata/x11server.git).
 
 ## Copyright free
-The sources in [this](https://github.com/suchja/x11server.git) Github repository, from which the docker image is build, are copyright free (see LICENSE.md). Thus you are allowed to use these sources (e.g. Dockerfile and README.md) in which ever way you like.
+The sources in [this](https://github.com/bmustiata/x11server.git) Github repository, from which the docker image is build, are copyright free (see LICENSE.md). Thus you are allowed to use these sources (e.g. Dockerfile and README.md) in which ever way you like.
