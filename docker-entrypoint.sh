@@ -22,7 +22,7 @@ xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f /Xauthority/xserver.xauth nme
 
 # now boot X-Server, tell it to our cookie and give it sometime to start up
 Xvfb :0 -auth ~/.Xauthority -screen 0 $XFB_SCREEN >>~/xvfb.log 2>&1 &
-sleep 2
+sleep 10
 
 # allow any application in the network to connect to this X Server
 xhost +
